@@ -1,0 +1,9 @@
+ab 测试工具是 Apache 自带的测试工具
+简单命令：
+-n 总请求字数
+-c 并发次数
+-p post请求的参数文件,可以为相对路径或绝对路径。如：id=1&uid=2
+-T 设置Content-Type头部。如：application/x-www-form-urlencoded
+
+在 Apache 的 bin 目录下使用 ab 命令，如：
+D:\PHPStudy\PHPTutorial\Apache\bin>ab -c 100 -n 200 http://www.testgit.cn/RedisForRushBuy/lPushReturnInt.php
