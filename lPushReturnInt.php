@@ -14,7 +14,7 @@ header("Content-type: text/html; charset=utf-8");
 
 $redis = HelperRedis::getRedisConn();
 
-// 将商品数量
+// 商品数量
 $num = 10;
 // 模拟用户唯一标识
 $userId = rand(0,30);
