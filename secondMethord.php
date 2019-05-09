@@ -16,15 +16,15 @@ $redis = HelperRedis::getRedisConn();
 $userId = rand(0,30);
 // 判断某用户是否已经抢购成功
 if ($redis->sIsMember('result',$userId)) {
-    $text = '用户' . $userId . '：已经抢到，请勿多次抢购' . "\n";
+    $text = '用户' . $userId . '：已经抢到，请勿多次抢购' . PHP_EOL;
 }else{
     $goodsId = $redis->lPop('goodsList');
     if ($goodsId !== false) {
         $redis->sAdd('result',$userId);
-        $text = '用户' . $userId . '：抢购成功' . "\n";
+        $text = '用户' . $userId . '：抢购成功' . PHP_EOL;
     }else{
         // 已经售完
-        $text = '用户' . $userId . '：手速慢，已经抢购完' . "\n";
+        $text = '用户' . $userId . '：手速慢，已经抢购完' . PHP_EOL;
     }
 }
 new SaveLog($text,'secondMethord.log');

@@ -23,13 +23,13 @@ $userId = rand(0,30);
 if ($redis->exists('userIdList')) {
     // 判断该用户是否已经存在队列中
     if (in_array($userId,$redis->lRange('userIdList',0,-1))) {
-        $text = "用户:" . $userId . ",已经抢到，请不要重复抢购" . "\n";
+        $text = "用户:" . $userId . ",已经抢到，请不要重复抢购" . PHP_EOL;
         new SaveLog($text,'lPushReturnInt.log');
         return;
     }
     // 判断是否已经售完
     if ($redis->lLen('userIdList') > $num) {
-        $text = "用户:" . $userId . ",已经售完" . "\n";
+        $text = "用户:" . $userId . ",已经售完" . PHP_EOL;
         new SaveLog($text,'lPushReturnInt.log');
         return;
     }
@@ -39,9 +39,9 @@ $userIdListLen = $redis->lPush('userIdList',$userId);
 // 判断队列中的人数是否大于商品库存
 if($userIdListLen > $num){
     // 抢购失败的相关操作
-    $text = "编号:" . $userIdListLen . ",用户:" . $userId . ",已经售完" . "\n";
+    $text = "编号:" . $userIdListLen . ",用户:" . $userId . ",已经售完" . PHP_EOL;
 }else{
 
-    $text = "编号:" . $userIdListLen . ",用户:" . $userId . ",抢购成功" . "\n";
+    $text = "编号:" . $userIdListLen . ",用户:" . $userId . ",抢购成功" . PHP_EOL;
 }
 new SaveLog($text,'lPushReturnInt.log');
